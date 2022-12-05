@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 
 #define FILE_NAME "2022/day2/input.txt"
 
