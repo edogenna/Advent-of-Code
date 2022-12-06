@@ -66,6 +66,7 @@ int partOne(){
 
 
     fclose(fp);
+
     printf("My score: %d", myScore);
 
     return 0;
@@ -94,6 +95,7 @@ int partTwo(){
         fscanf(fp, " %s", str);
     }
 
+    fclose(fp);
 
     printf("My score: %d", myScore);
 

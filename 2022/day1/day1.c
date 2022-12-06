@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 
 #define FILE_NAME "2022\\day1\\input.txt"
 #define BASE 10
@@ -83,8 +84,9 @@ int main(){
         printf("Top %d: %d\n", i, maxCalories[i]);
     }
 
-    printf("Sum of top %d is: %d", TOP_LEN, sumInArray(maxCalories,TOP_LEN));
+    fclose(fp);
 
+    printf("Sum of top %d is: %d", TOP_LEN, sumInArray(maxCalories,TOP_LEN));
 
     return 0;
 }

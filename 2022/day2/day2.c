@@ -83,7 +83,10 @@ int partOne(){
         fscanf(fp, " %c %c", &opponenctChoice, &myChoice);
     }
 
+    fclose(fp);
+
     printf("Total score: %d", myScore);
+
     return 0;
 }
 
@@ -106,9 +109,11 @@ int partTwo(){
         fscanf(fp, " %c %c", &opponenctChoice, &result);
     }
 
-    printf("Total score: %d", myScore);
-    return 0;
+    fclose(fp);
 
+    printf("Total score: %d", myScore);
+
+    return 0;
 }
 
 int main(){

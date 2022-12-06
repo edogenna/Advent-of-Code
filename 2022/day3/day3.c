@@ -78,6 +78,7 @@ int partOne(){
         fscanf(fp, " %s", str);
     }
 
+    fclose(fp);
 
     printf("My score: %d", myScore);
 
@@ -108,6 +109,7 @@ int partTwo(){
         fscanf(fp, " %s", str3);
     }
 
+    fclose(fp);
 
     printf("My score: %d", myScore);
 
