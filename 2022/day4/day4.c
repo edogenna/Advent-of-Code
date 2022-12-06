@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 
 #define FILE_NAME "2022/day4/input.txt"
@@ -59,16 +58,14 @@ int partOne(){
 
     fscanf(fp, " %s", str);
     while(!feof(fp)){
-        printf("letto:%s\n",str);
         numbersFromString(str, &elfSx1, &elfDx1, &elfSx2, &elfDx2);
-        printf("%d %d %d %d\n", elfSx1, elfDx1, elfSx2, elfDx2);
-
         myScore += isACoupleConteiningAnother(elfSx1, elfDx1, elfSx2, elfDx2);
 
         fscanf(fp, " %s", str);
     }
 
 
+    fclose(fp);
     printf("My score: %d", myScore);
 
     return 0;
