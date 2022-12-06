@@ -36,23 +36,19 @@ void numbersFromString(char* str, int* n1, int* n2, int* n3, int* n4){
 
 }
 
-int isOneInsideTheOther(int conteiner1, int conteiner2, int content1, int content2){
-    return content1 < conteiner1 || content2 > conteiner2)
+int isACoupleConteiningAnother(int elfSx1, int elfDx1, int elfSx2, int elfDx2){
+    return (elfSx1 <= elfSx2 && elfDx1 >= elfDx2) || (elfSx2 <= elfSx1 && elfDx2 >= elfDx1);
 }
 
-int isACoupleConteiningAnother(int elfSx1, int elfDx1, int elfSx2, int elfDx2){
-    return ()
-
-
-    if(isOneInsideTheOther(n1,n2,n3,n4) || isOneInsideTheOther(n3,n4,n1,n2))
-
+int isACoupleOverlappingAnother(int elfSx1, int elfDx1, int elfSx2, int elfDx2){
+    return ((elfSx2 <= elfDx1 && elfDx1 <= elfDx2) || (elfSx2 <= elfSx1 && elfSx1 <= elfDx2) ||
+            (elfSx1 <= elfDx2 && elfDx2 <= elfDx1) || (elfSx1 <= elfSx2 && elfSx2 <= elfDx1));
 }
 
 int partOne(){
     char str[STR_LEN];
     int myScore = 0;
-    int n1,n2,n3,n4;
-
+    int elfSx1,elfDx1,elfSx2,elfDx2;
 
     FILE *fp = fopen(FILE_NAME, "r");
 
@@ -64,9 +60,10 @@ int partOne(){
     fscanf(fp, " %s", str);
     while(!feof(fp)){
         printf("letto:%s\n",str);
-        numbersFromString(str, &n1, &n2, &n3,&n4);
-        printf("%d %d %d %d\n", n1,n2,n3,n4);
+        numbersFromString(str, &elfSx1, &elfDx1, &elfSx2, &elfDx2);
+        printf("%d %d %d %d\n", elfSx1, elfDx1, elfSx2, elfDx2);
 
+        myScore += isACoupleConteiningAnother(elfSx1, elfDx1, elfSx2, elfDx2);
 
         fscanf(fp, " %s", str);
     }
@@ -78,12 +75,35 @@ int partOne(){
 }
 
 int partTwo(){
+    char str[STR_LEN];
+    int myScore = 0;
+    int elfSx1,elfDx1,elfSx2,elfDx2;
 
+    FILE *fp = fopen(FILE_NAME, "r");
+
+    if(fp == NULL){
+        printf("Error opening the file\n");
+        return -1;
+    }
+
+    fscanf(fp, " %s", str);
+    while(!feof(fp)){
+        printf("letto:%s\n",str);
+        numbersFromString(str, &elfSx1, &elfDx1, &elfSx2, &elfDx2);
+        printf("%d %d %d %d\n", elfSx1, elfDx1, elfSx2, elfDx2);
+
+        myScore += isACoupleOverlappingAnother(elfSx1, elfDx1, elfSx2, elfDx2);
+
+        fscanf(fp, " %s", str);
+    }
+
+
+    printf("My score: %d", myScore);
 
     return 0;
 }
 
 
 int main(){
-    return partOne();
+    return partTwo();
 }
