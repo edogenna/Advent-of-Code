@@ -70,14 +70,14 @@ void inseringIntoStacks(char* str, stackArray_t* stacks){
 }
 
 void movingBetweenStacks(char* str, stackArray_t* stacks){
-    int num = 0;
+    int count = 0;
     int source = 0;
     int destination = 0;
     int i = 0;
 
     for(; str[i] != 'f'; i++)
         if('0' <= str[i] && str[i] <= '9')
-            num = num*10 + (str[i] - '0');
+            count = count * 10 + (str[i] - '0');
 
     for(; str[i] != 't'; i++)
         if('0' <= str[i] && str[i] <= '9')
@@ -88,7 +88,9 @@ void movingBetweenStacks(char* str, stackArray_t* stacks){
             destination = destination*10 + (str[i] - '0');
 
 
-    printf("%d %d %d\n", num, source, destination);
+
+    for(i = 0; i < count; i++)
+        pushStackArray(&stacks[destination-1], popStackArray(&stacks[source-1]));
 
 }
 
@@ -98,7 +100,6 @@ int partOne(){
     for(int i = 0; i < NUM_STACK; i++)
         stacks[i].top = -1;
 
-    int myScore = 0;
     int reversed = 0;
 
     FILE *fp = fopen(FILE_NAME, "r");
@@ -110,7 +111,6 @@ int partOne(){
 
     fgets(str, STR_LEN, fp);
     while(!feof(fp)){
-        printf("ho letto %s\n", str);
         if(str[0] == 'm'){
             if(!reversed) {
                 for (int i = 0; i < NUM_STACK; i++)
@@ -120,13 +120,6 @@ int partOne(){
 
 
             movingBetweenStacks(str, stacks);
-
-            for(int i=0; i < NUM_STACK; i++){
-                printf("STACK %d", i);
-                printStackArray(stacks + i);
-            }
-
-
         }else{
             inseringIntoStacks(str, stacks);
         }
@@ -134,10 +127,10 @@ int partOne(){
         fgets(str, STR_LEN, fp);
     }
 
+    for(int i = 0; i < NUM_STACK; i++)
+        printf(" %c", stacks[i].array[stacks[i].top]);
 
     fclose(fp);
-
-    printf("My score: %d", myScore);
 
     return 0;
 }
