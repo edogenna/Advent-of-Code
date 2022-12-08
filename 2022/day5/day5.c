@@ -69,29 +69,41 @@ void inseringIntoStacks(char* str, stackArray_t* stacks){
     }
 }
 
-void movingBetweenStacks(char* str, stackArray_t* stacks){
-    int count = 0;
-    int source = 0;
-    int destination = 0;
+void analizeString(char* str, int* count, int* source, int* destination){
+    *count = 0;
+    *source = 0;
+    *destination = 0;
+
     int i = 0;
 
     for(; str[i] != 'f'; i++)
         if('0' <= str[i] && str[i] <= '9')
-            count = count * 10 + (str[i] - '0');
+            (*count) = (*count) * 10 + (str[i] - '0');
 
     for(; str[i] != 't'; i++)
         if('0' <= str[i] && str[i] <= '9')
-            source = source*10 + (str[i] - '0');
+            (*source) = (*source)*10 + (str[i] - '0');
 
     for(; str[i] != '\0'; i++)
         if('0' <= str[i] && str[i] <= '9')
-            destination = destination*10 + (str[i] - '0');
+            (*destination) = (*destination)*10 + (str[i] - '0');
 
+}
 
-
-    for(i = 0; i < count; i++)
+void movingBetweenStacks(int count, int source, int destination, stackArray_t* stacks){
+    for(int i = 0; i < count; i++)
         pushStackArray(&stacks[destination-1], popStackArray(&stacks[source-1]));
+}
 
+void movingBetweenStacksInChunks(int count, int source, int destination, stackArray_t* stacks){
+    int topDestination = stacks[destination-1].top;
+    int topSource = stacks[source-1].top;
+
+    for(int i = 1; i <= count; i++)
+        stacks[destination-1].array[topDestination+i] = stacks[source-1].array[topSource-count+i];
+
+    stacks[destination-1].top += count;
+    stacks[source-1].top -= count;
 }
 
 int partOne(){
@@ -101,6 +113,7 @@ int partOne(){
         stacks[i].top = -1;
 
     int reversed = 0;
+    int count, source, destination;
 
     FILE *fp = fopen(FILE_NAME, "r");
 
@@ -118,8 +131,8 @@ int partOne(){
                 reversed = 1;
             }
 
-
-            movingBetweenStacks(str, stacks);
+            analizeString(str, &count, &source, &destination);
+            movingBetweenStacks(count, source, destination, stacks);
         }else{
             inseringIntoStacks(str, stacks);
         }
@@ -136,9 +149,49 @@ int partOne(){
 }
 
 int partTwo(){
+     char str[STR_LEN];
+    stackArray_t stacks[NUM_STACK];
+    for(int i = 0; i < NUM_STACK; i++)
+        stacks[i].top = -1;
+
+    int reversed = 0;
+    int count, source, destination;
+
+    FILE *fp = fopen(FILE_NAME, "r");
+
+    if(fp == NULL){
+        printf("Error opening the file\n");
+        return -1;
+    }
+
+    fgets(str, STR_LEN, fp);
+    while(!feof(fp)){
+        if(str[0] == 'm'){
+            if(!reversed) {
+                for (int i = 0; i < NUM_STACK; i++)
+                    reverseStackArray(&stacks[i]);
+                reversed = 1;
+            }
+
+            analizeString(str, &count, &source, &destination);
+            movingBetweenStacksInChunks(count, source, destination, stacks);
+
+        }else{
+            inseringIntoStacks(str, stacks);
+        }
+
+        fgets(str, STR_LEN, fp);
+    }
+
+    for(int i = 0; i < NUM_STACK; i++)
+        printf(" %c", stacks[i].array[stacks[i].top]);
+
+    fclose(fp);
+
+    return 0;
 }
 
 
 int main(){
-    return partOne();
+    return partTwo();
 }
