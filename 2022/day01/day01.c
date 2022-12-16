@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <limits.h>
 
-#define FILE_NAME "2022\\day1\\input.txt"
+#define FILE_NAME "2022\\day01\\input.txt"
 #define BASE 10
 #define STR_LEN 30
 #define TOP_LEN 3

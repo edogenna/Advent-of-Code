@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <limits.h>
 
-#define FILE_NAME "2022/day6/input.txt"
+#define FILE_NAME "2022/day06/input.txt"
 #define STR_LEN 5000
 #define WIN_LEN 14
 

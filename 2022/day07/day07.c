@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <limits.h>
 
-#define FILE_NAME "2022/day7/example.txt"
+#define FILE_NAME "2022/day07/example.txt"
 #define FOLDERS_NUM 500
 #define STR_LEN 80
 

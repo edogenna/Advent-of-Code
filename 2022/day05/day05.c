@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <limits.h>
 
-#define FILE_NAME "2022/day5/input.txt"
+#define FILE_NAME "2022/day05/input.txt"
 #define STR_LEN 80
 #define DIM_STACK 100
 #define NUM_STACK 9

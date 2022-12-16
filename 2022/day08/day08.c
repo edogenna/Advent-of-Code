@@ -2,7 +2,7 @@
 #include <string.h>
 #include <string.h>
 
-#define FILE_NAME "2022/day8/input.txt"
+#define FILE_NAME "2022/day08/input.txt"
 #define DIM 300
 #define STR_LEN 300
 

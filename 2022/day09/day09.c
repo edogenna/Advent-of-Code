@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define FILE_NAME "2022/day9/input.txt"
+#define FILE_NAME "2022/day09/input.txt"
 #define DIM 3000
 #define STR_LEN 30
 #define STARTING_POINT (DIM/2)

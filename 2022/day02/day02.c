@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#define FILE_NAME "2022/day2/input.txt"
+#define FILE_NAME "2022/day02/input.txt"
 
 #define OPPONENT_ROCK 'A'
 #define OPPONENT_PAPER 'B'

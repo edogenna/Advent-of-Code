@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#define FILE_NAME "2022/day4/input.txt"
+#define FILE_NAME "2022/day04/input.txt"
 #define STR_LEN 80
 
 
