@@ -202,6 +202,8 @@ int partOne(){
         fgets(str,STR_LEN,fp);
     }
 
+    fclose(fp);
+
     printf("Positions visited by the rope: %d", countPositions());
 
     return 0;
@@ -256,6 +258,8 @@ int partTwo(){
         }
         fgets(str,STR_LEN,fp);
     }
+
+    fclose(fp);
 
     printf("Positions visited by the rope: %d", countPositions());
 

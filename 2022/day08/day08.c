@@ -160,6 +160,7 @@ int partOne(){
         fscanf(fp, " %s", str);
     }
 
+    fclose(fp);
 
     int count = 0;
 
@@ -203,6 +204,8 @@ int partTwo(){
         r++;
         fscanf(fp, " %s", str);
     }
+
+    fclose(fp);
 
     maxScore = 0;
 
