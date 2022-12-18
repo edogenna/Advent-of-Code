@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define FILE_NAME "2022/day11/input.txt"
-#define STR_LEN 30
+
 #define DIM_STACK 50
 #define N_MONKEYS 8
 #define LCM (11*19*5*2*13*7*3*17)
@@ -123,9 +122,9 @@ int partOne() {
     for(int i = 0; i < nRounds; i++){
         for(int j = 0; j < N_MONKEYS; j++) {
             while (!isStackArEmpty(stacks[j])) {
-                int tmp = popStackArray(stacks[j]);
+                unsigned long long int tmp = popStackArray(stacks[j]);
                 tmp = operations[j](tmp);
-                int dest = tests[j](tmp);
+                unsigned long long int dest = tests[j](tmp);
                 pushStackArray(stacks[dest], tmp/3);
 
                 numItems[j]++;
@@ -147,9 +146,9 @@ int partTwo(){
     for(int i = 0; i < nRounds; i++){
         for(int j = 0; j < N_MONKEYS; j++) {
             while (!isStackArEmpty(stacks[j])) {
-                int tmp = popStackArray(stacks[j]);
+                unsigned long long int tmp = popStackArray(stacks[j]);
                 tmp = operations[j](tmp);
-                int dest = tests[j](tmp);
+                unsigned long long int dest = tests[j](tmp);
                 pushStackArray(stacks[dest], tmp%LCM);
 
                 numItems[j]++;
