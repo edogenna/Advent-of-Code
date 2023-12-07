@@ -1,4 +1,4 @@
-FILE_NAME = "input.txt"
+FILE_NAME = "example.txt"
 NUM_MAPS = 7
 
 class Position:
